@@ -1,0 +1,74 @@
+# IDE and Editor files
+.idea/
+.vscode/
+.fleet/
+.nova/
+.zed/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Environment files
+.env
+.env.backup
+.env.production
+.env.local
+.env.*.local
+
+# User uploaded content (should not be in version control)
+assets/uploads/
+
+# Laravel specific (core directory)
+core/vendor/
+core/node_modules/
+core/storage/*.key
+core/storage/pail
+core/storage/framework/cache/*
+core/storage/framework/sessions/*
+core/storage/framework/views/*
+core/storage/logs/*
+!core/storage/framework/cache/.gitignore
+!core/storage/framework/sessions/.gitignore
+!core/storage/framework/views/.gitignore
+!core/storage/logs/.gitignore
+core/bootstrap/cache/*
+!core/bootstrap/cache/.gitignore
+core/public/build/
+core/public/hot/
+core/public/storage
+
+# Composer
+core/auth.json
+# Note: composer.lock should be committed for consistency
+
+# NPM
+core/npm-debug.log
+core/yarn-error.log
+# Note: package-lock.json should be committed for consistency
+
+# Testing
+core/.phpunit.cache/
+core/.phpunit.result.cache
+# Note: phpunit.xml is a config file and should be committed
+
+# Build artifacts
+core/public/hot
+core/public/build
+
+# Laravel specific cache
+core/bootstrap/ssr
+
+# Other
+core/.phpactor.json
+core/Homestead.json
+core/Homestead.yaml
+
