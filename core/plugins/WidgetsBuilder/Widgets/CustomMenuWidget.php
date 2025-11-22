@@ -68,7 +68,7 @@ SOCIALICON;
 
    return <<<HTML
    <div class="col-xxl-2 col-xl-2 col-lg-6 col-md-6 col-sm-6">
-        <div class="footer-widget widget  mb-24">
+        <div class="footer-widget widget">
             <div class="footer-tittle">
                 <h6 class="footerTittle">{$title}</h6>
                 <ul class="listing">

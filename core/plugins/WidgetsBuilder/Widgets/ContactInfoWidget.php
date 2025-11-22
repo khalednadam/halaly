@@ -122,7 +122,7 @@ SOCIALICON;
 
    return <<<HTML
    <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6">
-        <div class="footer-widget widget  mb-24">
+        <div class="footer-widget widget ">
             <div class="footer-tittle">
                 {$contact_part_title}
                 <div class="footer-logo mb-40">

@@ -2,7 +2,7 @@
     <div class="footerWrapper footerStyleOne plr">
         <div class="footer-area footer-padding" >
             <div class="container-fluid">
-                <div class="row justify-content-between">
+                <div class="row align-items-center justify-content-between">
                     {!! render_frontend_sidebar('footer_one') !!}
                 </div>
             </div>

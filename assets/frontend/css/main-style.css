@@ -2471,8 +2471,8 @@ object {
 }
 
 .footer-padding {
-  padding-top: 100px;
-  padding-bottom: 75px;
+  padding-top: 12px;
+  padding-bottom: 12px;
 }
 @media only screen and (min-width: 576px) and (max-width: 767px) {
   .footer-padding {
@@ -10387,8 +10387,8 @@ object {
 
 .footer-bottom-area .footer-border {
   border-top: 1px solid rgba(255, 255, 255, 0.2);
-  padding-top: 30px;
-  padding-bottom: 29px;
+  padding-top: 12px;
+  padding-bottom: 12px;
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .footer-bottom-area .footer-border {
