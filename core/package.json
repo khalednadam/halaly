@@ -3,7 +3,10 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "vite build"
+        "build": "vite build",
+        "build:scss": "sass ../assets/frontend/scss/main-style.scss:public/assets/frontend/css/main-style.css --style=expanded --source-map",
+        "build:scss:watch": "sass ../assets/frontend/scss/main-style.scss:public/assets/frontend/css/main-style.css --style=expanded --source-map --watch",
+        "build:scss:min": "sass ../assets/frontend/scss/main-style.scss:public/assets/frontend/css/main-style.css --style=compressed --source-map"
     },
     "devDependencies": {
         "@popperjs/core": "^2.11.6",
