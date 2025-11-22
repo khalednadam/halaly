@@ -10334,7 +10334,7 @@ object {
   -webkit-transition: 0.4s;
   transition: 0.4s;
   color: #ffffff;
-  background: #6A66C1;
+  background: var(--main-color-one);
   font-size: 20px;
   display: inline-block;
   margin-right: 22px;
