@@ -1312,5 +1312,7 @@
     "Zipcode": "Zipcode",
     "{copy} will replace by ©; and {year} will be replaced by current year.": "{copy} will replace by ©; and {year} will be replaced by current year.",
     "Seller can create <strong>%s</strong> Services Maximum.": "Seller can create <strong>%s</strong> Services Maximum.",
-    "Seller can create <strong>%s</strong> Jobs Maximum.": "Seller can create <strong>%s</strong> Jobs Maximum."
-  }
+    "Seller can create <strong>%s</strong> Jobs Maximum.": "Seller can create <strong>%s</strong> Jobs Maximum.",
+    "Follow": "Follow",
+    "Following": "Following"
+}
