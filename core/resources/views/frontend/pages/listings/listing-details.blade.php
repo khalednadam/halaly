@@ -378,7 +378,7 @@
                         @include('frontend.pages.listings.frontend-business-hours')
                         @include('frontend.pages.listings.frontend-enquiry-form')
 
-                        <div class="map-wraper box-shadow1">
+                        {{-- <div class="map-wraper box-shadow1">
                             <h3 class="head5">{{ __('خريطة') }}</h3>
                             <p>{{ $listing->address }}</p>
                             <div class="map">
@@ -387,7 +387,7 @@
                                     </div>
                                 @endif
                             </div>
-                        </div>
+                        </div> --}}
 
                         @if(!empty($listing->video_url))
                             <div class="map-wraper box-shadow1">
