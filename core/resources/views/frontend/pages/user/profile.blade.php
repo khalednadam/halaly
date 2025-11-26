@@ -60,7 +60,7 @@
                                                 data-bs-target="#reviewModal"
                                                 data-user_id="{{$user->id}}">{{ __('Rate this Seller') }}</a>
                                         </div>
-                                        @if($user->role === 'vendor')
+                                        @if($user->role == 'vendor')
                                             @if(auth()->check() && Auth::guard('web')->user()->id !== $user->id)
                                                 <div class="rating-btn">
                                                     <a href="javascript:void(0)" class="follow-user-btn"
