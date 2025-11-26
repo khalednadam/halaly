@@ -61,6 +61,20 @@
                                                data-user_id="{{$user->id}}"
                                             >{{ __('Rate this Seller') }}</a>
                                         </div>
+                                        @if(auth()->check() && Auth::guard('web')->user()->id !== $user->id)
+                                            <div class="rating-btn">
+                                                <a href="javascript:void(0)" class="follow-user-btn" data-user-id="{{ $user->id }}">
+                                                    <span class="follow-text">{{ __('Follow') }}</span>
+                                                    <span class="following-text d-none">{{ __('Following') }}</span>
+                                                </a>
+                                            </div>
+                                        @elseif(!auth()->check())
+                                            <div class="rating-btn">
+                                                <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#loginModal">
+                                                    <span>{{ __('Follow') }}</span>
+                                                </a>
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="devider"></div>
@@ -122,4 +136,32 @@
 @section('scripts')
     <script src="{{ asset('assets/frontend/js/rating.js') }}"></script>
     <x-listings.user-review-add-js/>
+    <script>
+        (function ($) {
+            "use strict";
+
+            $(document).ready(function () {
+                // Follow user button functionality (Frontend only - no backend integration yet)
+                $(document).on('click', '.follow-user-btn', function (event) {
+                    event.preventDefault();
+                    let button = $(this);
+                    let followText = button.find('.follow-text');
+                    let followingText = button.find('.following-text');
+
+                    // Toggle button state (UI only)
+                    if (followText.is(':visible')) {
+                        // Follow action - just toggle UI
+                        followText.addClass('d-none');
+                        followingText.removeClass('d-none');
+                        button.addClass('following');
+                    } else {
+                        // Unfollow action - just toggle UI
+                        followText.removeClass('d-none');
+                        followingText.addClass('d-none');
+                        button.removeClass('following');
+                    }
+                });
+            });
+        })(jQuery);
+    </script>
 @endsection

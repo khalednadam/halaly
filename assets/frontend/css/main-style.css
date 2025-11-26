@@ -9659,6 +9659,18 @@ object {
   align-items: start;
   gap: 32px;
 }
+.new-style .featureListing .slider-inner-margin {
+  @media screen and (max-width: 768px) {
+    display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: start;
+  gap: 32px;
+  }
+}
 .new-style .featureListing .head4 {
   font-family: var(--body-font1);
   font-size: 16px;
@@ -19225,7 +19237,8 @@ object {
       height: 350px !important;
     }
     .singleFeatureCard {
-      width: calc( 50% - 10px);
+      /* width: calc( 50% - 10px); */
+      width: 100%;
     }
     .aboutAreaWraper {
       padding: 30px;

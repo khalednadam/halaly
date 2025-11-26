@@ -445,8 +445,8 @@
                                         <div class="service-locationMap" id="map-container">
                                             <div class="fullwidth-sidebar-container">
                                                 <div class="sidebar top-sidebar">
-                                                    <div id="map-canvas" class="map-canvas"  style="height: 700px; width: 450px; position: relative; overflow: hidden;">
-                                                    </div>
+                                                    {{-- <div id="map-canvas" class="map-canvas"  style="height: 700px; width: 450px; position: relative; overflow: hidden;">
+                                                    </div> --}}
                                                 </div>
                                             </div>
                                         </div>
