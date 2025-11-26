@@ -4,7 +4,7 @@
     $page_info = request()->url();
     $str = explode("/", request()->url());
     $page_info = $str[count($str) - 2];
-            ?>
+                    ?>
     {{ __(ucwords(str_replace("-", " ", $page_info))) }}
 @endsection
 
@@ -320,7 +320,7 @@
                 </div>
                 <div class="col-xl-4 col-lg-4 col-md-4">
                     <div class="seller-part">
-                        @if(!empty($listing->user) && $listing->user_id != 0)
+                        @if(!empty($listing->user) && $listing->user->role == 'vendor')
                             <div class="seller-details box-shadow1 mb-3">
                                 <div class="seller-details-wraper">
                                     <a href="{{ route('about.user.profile', $listing?->user?->username) }}">
@@ -338,7 +338,7 @@
                                                 <x-badge.vendor-subcategory-badge :vendor="$listing->user"/>
                                             @endif
                                         </div>
-                                        @if($listing->user_id != null && $listing->user_id != 0)
+                                        @if($listing->user_id != null)
                                             <div class="member-listing">
                                                 <span class="listing">
                                                     @if($user_total_listings > 1)
@@ -351,23 +351,21 @@
                                         @endif
                                     </div>
                                 </div>
+
                                 @if(auth()->check() && Auth::guard('web')->user()->id !== $listing->user_id)
                                     <div class="follow-btn-wrapper mt-3">
-                                        <button type="button" class="cmn-btn2 w-100 follow-user-btn" data-user-id="{{ $listing->user_id }}">
+                                        <button type="button" class="cmn-btn2 w-100 follow-user-btn"
+                                            data-user-id="{{ $listing->user_id }}">
                                             <span class="follow-text">{{ __('Follow') }}</span>
                                             <span class="following-text d-none">{{ __('Following') }}</span>
                                         </button>
                                     </div>
                                 @elseif(!auth()->check())
                                     <div class="follow-btn-wrapper mt-3">
-                                        <a href="javascript:void(0)" class="cmn-btn2 w-100" data-bs-toggle="modal" data-bs-target="#loginModal">{{ __('Follow') }}</a>
+                                        <a href="javascript:void(0)" class="cmn-btn2 w-100" data-bs-toggle="modal"
+                                            data-bs-target="#loginModal">{{ __('Follow') }}</a>
                                     </div>
                                 @endif
-                            </div>
-                        @else
-                            <div class="map-wraper box-shadow1 mb-3">
-                                <h3 class="head5">{{ $listing->user->first_name ?? '' }} {{ $listing->user->last_name ?? '' }}</h3>
-                                <p>{{ $listing->address }}</p>
                             </div>
                         @endif
                         <!--user info -->
