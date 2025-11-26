@@ -16762,6 +16762,14 @@ object {
         max-width: 100%;
       }
     }
+    button {
+      min-width: 100%;
+      border: var(--main-color-one) 1px solid;
+      color: var(--main-color-one);
+      background-color: transparent;
+      padding: 6px 12px;
+      border-radius: 8px;
+  }
     .seller-name{
       .name{
         font-weight: 600;
