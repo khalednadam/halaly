@@ -334,6 +334,9 @@
                                                 <span>{{ optional($listing->user)->fullname }}</span>
                                             </a>
                                             <x-badge.user-verified-badge :listing="$listing"/>
+                                            @if($listing->user && $listing->user->isVendor())
+                                                <x-badge.vendor-subcategory-badge :vendor="$listing->user"/>
+                                            @endif
                                         </div>
                                         @if($listing->user_id != null && $listing->user_id != 0)
                                             <div class="member-listing">

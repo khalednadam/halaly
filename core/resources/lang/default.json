@@ -1312,5 +1312,19 @@
     "Zipcode": "Zipcode",
     "{copy} will replace by ©; and {year} will be replaced by current year.": "{copy} will replace by ©; and {year} will be replaced by current year.",
     "Seller can create <strong>%s</strong> Services Maximum.": "Seller can create <strong>%s</strong> Services Maximum.",
-    "Seller can create <strong>%s</strong> Jobs Maximum.": "Seller can create <strong>%s</strong> Jobs Maximum."
+    "Seller can create <strong>%s</strong> Jobs Maximum.": "Seller can create <strong>%s</strong> Jobs Maximum.",
+    "Vendor Subcategory": "Vendor Subcategory",
+    "Select Vendor Type": "Select Vendor Type",
+    "Veterinarian": "Veterinarian",
+    "Veterinary professionals and clinics": "Veterinary professionals and clinics",
+    "Goods": "Goods",
+    "Physical products and supplies": "Physical products and supplies",
+    "Services": "Services",
+    "Professional services (grooming, transport, etc.)": "Professional services (grooming, transport, etc.)",
+    "Invalid vendor subcategory": "Invalid vendor subcategory",
+    "Filter by Vendor Type": "Filter by Vendor Type",
+    "All Vendors": "All Vendors",
+    "Vendor Subcategory Report": "Vendor Subcategory Report",
+    "Number of Listings": "Number of Listings",
+    "View Listings": "View Listings"
   }

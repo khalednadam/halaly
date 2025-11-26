@@ -57,6 +57,7 @@ class User extends Authenticatable
         'is_suspend',
         'status',
         'role',
+        'vendor_subcategory',
     ];
 
     /**
@@ -116,6 +117,37 @@ class User extends Authenticatable
     public function makeCustomer(): void
     {
         $this->update(['role' => 'customer']);
+    }
+
+    /**
+     * Check if vendor is in a specific subcategory
+     */
+    public function isVendorSubcategory($subcategory): bool
+    {
+        return $this->isVendor() && $this->vendor_subcategory === $subcategory;
+    }
+
+    /**
+     * Get vendor subcategory label
+     */
+    public function getVendorSubcategoryLabel(): string
+    {
+        return match($this->vendor_subcategory) {
+            'veterinarian' => __('Veterinarian'),
+            'goods' => __('Goods'),
+            'services' => __('Services'),
+            default => __('Unknown'),
+        };
+    }
+
+    /**
+     * Set vendor subcategory
+     */
+    public function setVendorSubcategory($subcategory): void
+    {
+        if (in_array($subcategory, ['veterinarian', 'goods', 'services'])) {
+            $this->update(['vendor_subcategory' => $subcategory]);
+        }
     }
 
     public function user_country()

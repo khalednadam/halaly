@@ -38,6 +38,7 @@ class UserController extends Controller
                     'phone'=>'required',
                     'country'=>'required',
                     'state'=>'required',
+                    'vendor_subcategory'=>'nullable|in:veterinarian,goods,services',
                 ],
                 [
                     'first_name.required'=> __('First name is required'),
@@ -45,6 +46,7 @@ class UserController extends Controller
                     'country_id.required'=> __('Country is required'),
                     'state_id.required'=> __('State is required'),
                     'phone.required'=> __('Phone is required'),
+                    'vendor_subcategory.in'=> __('Invalid vendor subcategory'),
                 ]);
           }
 
@@ -54,7 +56,7 @@ class UserController extends Controller
                     'profile_background'=>$request->profile_background,
                 ]);
             }else{
-                User::where('id',Auth::guard('web')->user()->id)->update([
+                $update_data = [
                     'first_name'=>$request->first_name,
                     'last_name'=>$request->last_name,
                     'email'=>$request->email,
@@ -63,7 +65,14 @@ class UserController extends Controller
                     'state_id'=>$request->state,
                     'city_id'=>$request->city,
                     'image'=>$request->image,
-                ]);
+                ];
+
+                // Add vendor subcategory if user is vendor
+                if (Auth::guard('web')->user()->isVendor() && !empty($request->vendor_subcategory)) {
+                    $update_data['vendor_subcategory'] = $request->vendor_subcategory;
+                }
+
+                User::where('id',Auth::guard('web')->user()->id)->update($update_data);
             }
 
             return response()->json([

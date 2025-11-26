@@ -47,7 +47,14 @@ class FrontendSearchController extends Controller
                 });
         }
 
-        $listings = $listings->orderBy('id', 'desc')->get();
+        // Filter by vendor subcategory if provided
+        if ($request->has('vendor_subcategory') && !empty($request->vendor_subcategory)) {
+            $listings->whereHas('user', function ($query) use ($request) {
+                $query->where('vendor_subcategory', $request->vendor_subcategory);
+            });
+        }
+
+        $listings = $listings->with('user')->orderBy('id', 'desc')->get();
 
         return response()->json([
             'status' => 'success',

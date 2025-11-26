@@ -2904,3 +2904,58 @@ function get_user_role(): ?string
     return auth()->user()->role;
 }
 
+/**
+ * Check if authenticated user is vendor in specific subcategory
+ * 
+ * @param string $subcategory
+ * @return bool
+ */
+function is_vendor_subcategory($subcategory): bool
+{
+    if (!auth()->check()) {
+        return false;
+    }
+    return auth()->user()->isVendorSubcategory($subcategory);
+}
+
+/**
+ * Get authenticated vendor's subcategory
+ * 
+ * @return string|null
+ */
+function get_vendor_subcategory(): ?string
+{
+    if (!auth()->check()) {
+        return null;
+    }
+    return auth()->user()->vendor_subcategory;
+}
+
+/**
+ * Get vendor subcategory label
+ * 
+ * @return string
+ */
+function get_vendor_subcategory_label(): string
+{
+    if (!auth()->check()) {
+        return __('Unknown');
+    }
+    return auth()->user()->getVendorSubcategoryLabel();
+}
+
+/**
+ * Get all vendor subcategories with labels
+ * 
+ * @return array
+ */
+function get_vendor_subcategories(): array
+{
+    return [
+        'veterinarian' => __('Veterinarian'),
+        'goods' => __('Goods'),
+        'services' => __('Services'),
+    ];
+}
+
+

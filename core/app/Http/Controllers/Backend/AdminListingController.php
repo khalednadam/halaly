@@ -389,4 +389,43 @@ class AdminListingController extends Controller
         return view('backend.pages.listings.admin-listings.edit-listing', compact('listing', 'brands', 'categories', 'sub_categories', 'child_categories','all_countries', 'all_states', 'all_cities', 'tags'));
 
     }
+
+    // Filter listings by vendor subcategory
+    public function filterByVendorSubcategory(Request $request)
+    {
+        $query = Listing::adminListings();
+
+        if ($request->has('vendor_subcategory') && !empty($request->vendor_subcategory)) {
+            $query->whereHas('user', function ($q) use ($request) {
+                $q->where('vendor_subcategory', $request->vendor_subcategory);
+            });
+        }
+
+        $all_listings = $query->latest()->paginate(10);
+
+        return view('backend.pages.listings.admin-listings.search-listing', compact('all_listings'))->render();
+    }
+
+    // Get vendor subcategory report
+    public function vendorSubcategoryReport()
+    {
+        $subcategories = get_vendor_subcategories();
+        $report = [];
+
+        foreach (array_keys($subcategories) as $subcategory) {
+            $count = Listing::adminListings()
+                ->whereHas('user', function ($q) use ($subcategory) {
+                    $q->where('vendor_subcategory', $subcategory);
+                })
+                ->count();
+
+            $report[$subcategory] = [
+                'label' => $subcategories[$subcategory],
+                'count' => $count,
+            ];
+        }
+
+        return view('backend.pages.reports.vendor-subcategory-report', compact('report'));
+    }
 }
+

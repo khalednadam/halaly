@@ -42,7 +42,7 @@
         @endif
     @endif
 
-    <li class="single"><a href="{{ route('user.listing.favorite.all') }}" class="heart"><i class="lar la-heart icon"></i></a></li>
+    {{-- <li class="single"><a href="{{ route('user.listing.favorite.all') }}" class="heart"><i class="lar la-heart icon"></i></a></li> --}}
     <li class="single userAccount">
        <x-frontend.user.user-profile-image/>
         <div class="userAccount-wrapper">

@@ -1444,5 +1444,19 @@
     "All Listing": "جميع الأعلانات",
     "Your Phone": "رقم الهاتف",
     "Follow": "متابعة",
-    "Following": "متابع"
+    "Following": "متابع",
+    "Vendor Subcategory": "فئة البائع الفرعية",
+    "Select Vendor Type": "اختر نوع البائع",
+    "Veterinarian": "طبيب بيطري",
+    "Veterinary professionals and clinics": "المتخصصون والعيادات البيطرية",
+    "Goods": "السلع",
+    "Physical products and supplies": "المنتجات المادية والإمدادات",
+    "Services": "الخدمات",
+    "Professional services (grooming, transport, etc.)": "الخدمات المهنية (العناية، النقل، إلخ)",
+    "Invalid vendor subcategory": "فئة بائع فرعية غير صحيحة",
+    "Filter by Vendor Type": "تصفية حسب نوع البائع",
+    "All Vendors": "جميع البائعين",
+    "Vendor Subcategory Report": "تقرير فئة البائع الفرعية",
+    "Number of Listings": "عدد الإعلانات",
+    "View Listings": "عرض الإعلانات"
 }

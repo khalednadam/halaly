@@ -33,6 +33,9 @@
                                                 <span>{{ $user->fullname }}</span>
 
                                                 <x-badge.user-verified-badge :user="$user"/>
+                                                @if($user->isVendor())
+                                                    <x-badge.vendor-subcategory-badge :vendor="$user"/>
+                                                @endif
 
                                             </div>
                                             <div class="member-listing">

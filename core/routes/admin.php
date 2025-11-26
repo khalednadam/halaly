@@ -93,6 +93,8 @@ Route::middleware(['setlang'])->group(function () {
             Route::post('/admin-bulk-action','bulkAction')->name('admin.bulk.action.listing')->permission('admin-listing-bulk-delete');
             Route::post('/admin-published/{id}','adminListingPublishedStatus')->name('admin.listings.published.status.change.by')->permission('admin-listing-published-status-change');
             Route::post('/admin-status/{id}','adminChangeStatus')->name('admin.listings.status.change.by')->permission('admin-listing-status-change');
+            Route::get('/filter/vendor-subcategory','filterByVendorSubcategory')->name('admin.listing.filter.vendor-subcategory');
+            Route::get('/report/vendor-subcategory','vendorSubcategoryReport')->name('admin.listing.report.vendor-subcategory');
         });
 
         // listings report reasons

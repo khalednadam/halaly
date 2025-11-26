@@ -101,6 +101,24 @@
                                                 <x-form.city-dropdown :title="__('Select Your City')" :id="'city_id'" :required="false"/>
                                             </div>
                                         </div>
+
+                                        @if(Auth::guard('web')->user()->isVendor())
+                                        <div class="input-form">
+                                            <label for="vendor_subcategory">{{ __('Vendor Subcategory') }} <span class="text-danger">*</span></label>
+                                            <select id="vendor_subcategory" name="vendor_subcategory" class="w-100 input-field" required>
+                                                <option value="">{{ __('Select Vendor Type') }}</option>
+                                                <option value="veterinarian" @if(Auth::guard('web')->user()->vendor_subcategory === 'veterinarian') selected @endif>
+                                                    {{ __('Veterinarian') }} - {{ __('Veterinary professionals and clinics') }}
+                                                </option>
+                                                <option value="goods" @if(Auth::guard('web')->user()->vendor_subcategory === 'goods') selected @endif>
+                                                    {{ __('Goods') }} - {{ __('Physical products and supplies') }}
+                                                </option>
+                                                <option value="services" @if(Auth::guard('web')->user()->vendor_subcategory === 'services') selected @endif>
+                                                    {{ __('Services') }} - {{ __('Professional services (grooming, transport, etc.)') }}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        @endif
                                     </div>
                                     <div class="btn-wrapper mt-3">
                                         <button type="submit" id="user_profile_info_update" class="red-btn"> {{ __('Save changes') }} </button>

@@ -65,6 +65,11 @@ class AppServiceProvider extends ServiceProvider
         Blade::if('userRole', function ($role) {
             return auth()->check() && auth()->user()->role === $role;
         });
+
+        // @vendorSubcategory - Show content only if vendor has specific subcategory
+        Blade::if('vendorSubcategory', function ($subcategory) {
+            return auth()->check() && auth()->user()->isVendorSubcategory($subcategory);
+        });
     }
 }
 
