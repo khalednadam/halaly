@@ -168,6 +168,7 @@ class RegisterController extends Controller
                     'username' => 'required|unique:users|max:191',
                     'phone' => 'required|unique:users|max:191',
                     'password' => 'required|min:6|max:191',
+                    'role' => 'required|in:customer,vendor',
                     'g-recaptcha-response' => 'required',
                 ]);
             }else{
@@ -178,6 +179,7 @@ class RegisterController extends Controller
                     'username' => 'required|unique:users|max:191',
                     'phone' => 'required|unique:users|max:191',
                     'password' => 'required|min:6|max:191',
+                    'role' => 'required|in:customer,vendor',
                 ]);
             }
 
@@ -198,7 +200,7 @@ class RegisterController extends Controller
                 }
             }
 
-            // create user
+            // create user with role
             $user = User::create([
                 'first_name' => $request->first_name,
                 'last_name' => $request->last_name,
@@ -208,6 +210,7 @@ class RegisterController extends Controller
                 'password' => Hash::make($request->password),
                 'terms_conditions' =>1,
                 'email_verify_token'=> $email_verify_tokn,
+                'role' => $request->role,
             ]);
 
             // if exists wallet module

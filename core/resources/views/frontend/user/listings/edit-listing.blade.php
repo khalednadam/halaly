@@ -461,6 +461,7 @@
                                     <div class="col-xl-3">
                                         <div class="right-sidebar">
 
+                                            @isVendor
                                             <div class="box-shadow1 feature p-24">
                                                 <label class="is_featured">
                                                     <input type="checkbox" name="is_featured" id="is_featured" value="{{$listing->is_featured}}" @if($listing->is_featured == 1) checked @endif class="custom-check-box feature_disable_color">
@@ -472,6 +473,7 @@
                                                     </p>
                                                 @endif
                                             </div>
+                                            @endisVendor
 
                                             <div class="box-shadow1 tags p-24 mt-3">
                                                 <label for="tags">{{ __('Tags') }}</label>

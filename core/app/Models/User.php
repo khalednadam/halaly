@@ -56,6 +56,7 @@ class User extends Authenticatable
         'verified_status',
         'is_suspend',
         'status',
+        'role',
     ];
 
     /**
@@ -83,6 +84,38 @@ class User extends Authenticatable
     public function getFullnameAttribute()
     {
         return $this->first_name . ' ' . $this->last_name;
+    }
+
+    /**
+     * Check if user is a vendor
+     */
+    public function isVendor(): bool
+    {
+        return $this->role === 'vendor';
+    }
+
+    /**
+     * Check if user is a customer
+     */
+    public function isCustomer(): bool
+    {
+        return $this->role === 'customer';
+    }
+
+    /**
+     * Set user as vendor
+     */
+    public function makeVendor(): void
+    {
+        $this->update(['role' => 'vendor']);
+    }
+
+    /**
+     * Set user as customer
+     */
+    public function makeCustomer(): void
+    {
+        $this->update(['role' => 'customer']);
     }
 
     public function user_country()

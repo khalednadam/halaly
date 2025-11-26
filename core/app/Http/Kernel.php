@@ -78,6 +78,7 @@ class Kernel extends HttpKernel
         'setlang' => \App\Http\Middleware\SetLang::class,
         'role' => RoleMiddleware::class,
         'permission' => PermissionMiddleware::class,
+        'checkUserRole' => \App\Http\Middleware\CheckUserRole::class,
         'guest_media_upload_check' => guestMediaUploadCheck::class,
 //        'demo' => \App\Http\Middleware\Demo::class,
     ];

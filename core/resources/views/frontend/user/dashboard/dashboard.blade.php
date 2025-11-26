@@ -79,6 +79,7 @@
                                     </div>
                                 </div>
                                 <!--Add Listing States-->
+                                @isVendor
                                 <div class="all-list-state mt-20">
                                     <div class="row g-3">
                                         <div class="col-md-3 col-md-3 col-6">
@@ -107,6 +108,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                @endisVendor
                                 <!--All Reviews-->
                                 <div class="all-reviews box-shadow1 mt-20">
                                     <h4 class="dis-title">{{ __('All Reviews') }}</h4>

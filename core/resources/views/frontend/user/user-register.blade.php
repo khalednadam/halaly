@@ -50,6 +50,16 @@
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-12">
+                                <label class="infoTitle">{{ __('تسجيل بصفة') }}</label>
+                                <div class="input-form input-form2">
+                                    <select name="role" id="role" class="ps-3 form-select" required>
+                                        <option value="">-- {{ __('اختر المناسب') }} --</option>
+                                        <option value="customer" {{ old('role') == 'customer' ? 'selected' : '' }}>{{ __('زبون - بإمكانك التصفح والشراء') }}</option>
+                                        <option value="vendor" {{ old('role') == 'vendor' ? 'selected' : '' }}>{{ __('بائع - إنشاء وإدارة الإعلانات') }}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12">
                                 <label class="infoTitle">{{ __('Username') }}</label>
                                 <div class="input-form input-form2">
                                     <input type="text"  class="ps-3" name="username" value="{{old('username')}}"  id="username" placeholder="">

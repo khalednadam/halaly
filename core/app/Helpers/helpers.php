@@ -2842,3 +2842,65 @@ function getYoutubeEmbedUrl($url)
     }
     return $youtube_id;
 }
+
+/**
+ * Check if authenticated user is a vendor
+ * 
+ * @return bool
+ */
+function is_vendor(): bool
+{
+    if (!auth()->check()) {
+        return false;
+    }
+    return auth()->user()->isVendor();
+}
+
+/**
+ * Check if authenticated user is a customer
+ * 
+ * @return bool
+ */
+function is_customer(): bool
+{
+    if (!auth()->check()) {
+        return false;
+    }
+    return auth()->user()->isCustomer();
+}
+
+/**
+ * Check if a specific user is a vendor
+ * 
+ * @param \App\Models\User $user
+ * @return bool
+ */
+function user_is_vendor($user): bool
+{
+    return $user->isVendor();
+}
+
+/**
+ * Check if a specific user is a customer
+ * 
+ * @param \App\Models\User $user
+ * @return bool
+ */
+function user_is_customer($user): bool
+{
+    return $user->isCustomer();
+}
+
+/**
+ * Get authenticated user's role
+ * 
+ * @return string|null
+ */
+function get_user_role(): ?string
+{
+    if (!auth()->check()) {
+        return null;
+    }
+    return auth()->user()->role;
+}
+

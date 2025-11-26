@@ -6,6 +6,7 @@ use App\Facades\ModuleDataFacade;
 use App\Helpers\ModuleMetaData;
 use App\Models\Backend\Language;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
@@ -40,5 +41,30 @@ class AppServiceProvider extends ServiceProvider
         }
         Paginator::useBootstrap();
         $this->loadViewsFrom(__DIR__.'/../../plugins/PageBuilder/views','pagebuilder');
+
+        // Register Blade directives for role checking
+        $this->registerRoleDirectives();
+    }
+
+    /**
+     * Register custom Blade directives for role-based visibility
+     */
+    protected function registerRoleDirectives(): void
+    {
+        // @isVendor - Show content only to vendors
+        Blade::if('isVendor', function () {
+            return auth()->check() && auth()->user()->isVendor();
+        });
+
+        // @isCustomer - Show content only to customers
+        Blade::if('isCustomer', function () {
+            return auth()->check() && auth()->user()->isCustomer();
+        });
+
+        // @userRole - Show content only if user has specific role
+        Blade::if('userRole', function ($role) {
+            return auth()->check() && auth()->user()->role === $role;
+        });
     }
 }
+

@@ -80,6 +80,7 @@
                                                 </div>
                                             </div>
                                             <div class="right-buttons">
+                                                @isVendor
                                                 <span class="text">
                                                     @if($listing->is_published === 1)
                                                         {{ __('Published') }}
@@ -106,6 +107,7 @@
                                                         <x-popup.frontend-listing-delete-popup :url="route('user.delete.listing',$listing->id)"/>
                                                     </div>
                                                 </div>
+                                                @endisVendor
                                             </div>
                                         </div>
                                        <div class="devider"></div>

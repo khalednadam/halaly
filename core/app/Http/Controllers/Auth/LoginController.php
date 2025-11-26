@@ -175,7 +175,8 @@ class LoginController extends Controller
                         return response()->json([
                             'msg' => __('Login Success Redirecting'),
                             'type' => 'success',
-                            'status' => 'user-login'
+                            'status' => 'user-login',
+                            'user_role' => Auth::user()->role
                         ]);
                     }
                 }
