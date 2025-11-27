@@ -159,25 +159,70 @@
             "use strict";
 
             $(document).ready(function () {
-                // Follow user button functionality (Frontend only - no backend integration yet)
+                // Check initial follow status
+                @if(auth()->check() && $user->role == 'vendor' && Auth::guard('web')->user()->id !== $user->id)
+                    let followButton = $('.follow-user-btn');
+                    if (followButton.length) {
+                        let userId = followButton.data('user-id');
+                        $.ajax({
+                            url: "{{ route('user.check.follow.status') }}",
+                            type: 'POST',
+                            data: {
+                                _token: '{{ csrf_token() }}',
+                                user_id: userId
+                            },
+                            success: function(res) {
+                                if (res.status === 'success' && res.is_following) {
+                                    followButton.find('.follow-text').addClass('d-none');
+                                    followButton.find('.following-text').removeClass('d-none');
+                                    followButton.addClass('following');
+                                }
+                            }
+                        });
+                    }
+                @endif
+
+                // Follow user button functionality
                 $(document).on('click', '.follow-user-btn', function (event) {
                     event.preventDefault();
                     let button = $(this);
+                    let userId = button.data('user-id');
                     let followText = button.find('.follow-text');
                     let followingText = button.find('.following-text');
+                    let isFollowing = !followText.is(':visible');
 
-                    // Toggle button state (UI only)
-                    if (followText.is(':visible')) {
-                        // Follow action - just toggle UI
-                        followText.addClass('d-none');
-                        followingText.removeClass('d-none');
-                        button.addClass('following');
-                    } else {
-                        // Unfollow action - just toggle UI
-                        followText.removeClass('d-none');
-                        followingText.addClass('d-none');
-                        button.removeClass('following');
-                    }
+                    $.ajax({
+                        url: "{{ route('user.follow.unfollow') }}",
+                        type: 'POST',
+                        data: {
+                            _token: '{{ csrf_token() }}',
+                            user_id: userId
+                        },
+                        beforeSend: function() {
+                            button.prop('disabled', true);
+                        },
+                        success: function(res) {
+                            button.prop('disabled', false);
+                            if (res.status === 'follow_success') {
+                                followText.addClass('d-none');
+                                followingText.removeClass('d-none');
+                                button.addClass('following');
+                                toastr_success_js(res.message);
+                            } else if (res.status === 'unfollow_success') {
+                                followText.removeClass('d-none');
+                                followingText.addClass('d-none');
+                                button.removeClass('following');
+                                toastr_warning_js(res.message);
+                            } else {
+                                toastr_error_js(res.message);
+                            }
+                        },
+                        error: function(xhr) {
+                            button.prop('disabled', false);
+                            let message = xhr.responseJSON?.message || '{{ __('An error occurred. Please try again.') }}';
+                            toastr_error_js(message);
+                        }
+                    });
                 });
             });
         })(jQuery);

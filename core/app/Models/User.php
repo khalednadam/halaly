@@ -6,6 +6,7 @@ use App\Models\Backend\IdentityVerification;
 use App\Models\Backend\Listing;
 use App\Models\Frontend\AccountDeactivate;
 use App\Models\Frontend\Review;
+use App\Models\Frontend\UserFollow;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -205,6 +206,40 @@ class User extends Authenticatable
             return $this->hasManyThrough(LiveChatMessage::class, LiveChat::class, 'user_id', 'live_chat_id');
         }
         return null;
+    }
+
+    /**
+     * Get users that this user is following (vendors)
+     */
+    public function following()
+    {
+        return $this->belongsToMany(User::class, 'user_follows', 'follower_id', 'following_id')
+            ->withTimestamps();
+    }
+
+    /**
+     * Get users that are following this user (customers)
+     */
+    public function followers()
+    {
+        return $this->belongsToMany(User::class, 'user_follows', 'following_id', 'follower_id')
+            ->withTimestamps();
+    }
+
+    /**
+     * Check if this user is following another user
+     */
+    public function isFollowing($userId): bool
+    {
+        return $this->following()->where('following_id', $userId)->exists();
+    }
+
+    /**
+     * Check if this user is followed by another user
+     */
+    public function isFollowedBy($userId): bool
+    {
+        return $this->followers()->where('follower_id', $userId)->exists();
     }
 
 }

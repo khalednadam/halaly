@@ -11,6 +11,7 @@ use App\Http\Controllers\Frontend\SocialLoginController;
 use App\Http\Controllers\Frontend\User\GuestMediaUploadController;
 use App\Http\Controllers\Frontend\User\ListingController;
 use App\Http\Controllers\Frontend\User\ListingFavoriteController;
+use App\Http\Controllers\Frontend\User\UserFollowController;
 use App\Http\Controllers\Frontend\UserReviewController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
@@ -104,6 +105,9 @@ Route::group(['middleware' => ['globalVariable', 'maintains_mode','setlang']], f
     });
     // listing favorite
     Route::post('favorite/listing-add-remove',[ListingFavoriteController::class, 'listingFavoriteAddRemove'])->name('listing.favorite.add.remove');
+    // user follow
+    Route::post('user/follow-unfollow',[UserFollowController::class, 'followUnfollow'])->name('user.follow.unfollow');
+    Route::post('user/check-follow-status',[UserFollowController::class, 'checkFollowStatus'])->name('user.check.follow.status');
     // listing report
     Route::post('listing/report-add',[ListingReportController::class, 'listingReportAdd'])->name('listing.report.add');
     // user review
