@@ -6,6 +6,7 @@ use App\Http\Controllers\Frontend\User\DashboardController;
 use App\Http\Controllers\Frontend\User\UserController;
 use App\Http\Controllers\Frontend\User\AccountSettingController;
 use App\Http\Controllers\Frontend\User\ListingController;
+use App\Http\Controllers\Frontend\User\UserFollowController;
 
 // client
 Route::group(['prefix'=>'user','as'=>'user.'],function() {
@@ -56,6 +57,11 @@ Route::group(['prefix'=>'user','as'=>'user.'],function() {
                   Route::post('delete/{id?}','deleteListing')->name('delete.listing');
                   Route::post('published-on-off/{id}', 'listingPublishedStatus')->name('listing.published.status');
               });
+          });
+
+          // followed vendors - CUSTOMER ONLY
+          Route::middleware('checkUserRole:customer')->controller(UserFollowController::class)->group(function () {
+              Route::get('followed-vendors', 'followedVendors')->name('followed.vendors');
           });
 
           //seller profile verify

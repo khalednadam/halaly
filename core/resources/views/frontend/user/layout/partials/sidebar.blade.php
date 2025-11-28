@@ -15,6 +15,16 @@
     </a>
     @endisVendor
 
+    @isCustomer
+    <a href="{{ route('user.followed.vendors') }}" class="menu-item @if(request()->routeIs('user.followed.vendors')) active @endif">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 1L11.1429 6.37836L17 6.37836L12.4286 8.72327L14.5714 14.1216L9 10.7767L3.42857 14.1216L5.57143 8.72327L1 6.37836L6.85714 6.37836L9 1Z" stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M9 9C9.82843 9 10.5 8.32843 10.5 7.5C10.5 6.67157 9.82843 6 9 6C8.17157 6 7.5 6.67157 7.5 7.5C7.5 8.32843 8.17157 9 9 9Z" stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="ms-2">{{ __('Followed Vendors') }}</span>
+    </a>
+    @endisCustomer
+
     @if(moduleExists('Membership'))
         @if(membershipModuleExistsAndEnable('Membership'))
             <a href="{{ route('user.membership.all') }}" class="menu-item @if (request()->routeIs('user.membership.all')) active @endif">

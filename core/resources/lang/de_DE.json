@@ -1312,5 +1312,22 @@
     "Zipcode": "Zipcode",
     "{copy} will replace by ©; and {year} will be replaced by current year.": "{copy} will replace by ©; and {year} will be replaced by current year.",
     "Seller can create <strong>%s</strong> Services Maximum.": "Seller can create <strong>%s</strong> Services Maximum.",
-    "Seller can create <strong>%s</strong> Jobs Maximum.": "Seller can create <strong>%s</strong> Jobs Maximum."
+    "Seller can create <strong>%s</strong> Jobs Maximum.": "Seller can create <strong>%s</strong> Jobs Maximum.",
+    "Unfollow": "Nicht mehr folgen",
+    "Followed Vendors": "Gefolgte Anbieter",
+    "No Followed Vendors Yet": "Noch keine gefolgten Anbieter",
+    "Following since": "Folgt seit",
+    "Listings": "Anzeigen",
+    "reviews": "Bewertungen",
+    "You are now following this vendor.": "Sie folgen diesem Anbieter jetzt.",
+    "You have unfollowed this vendor.": "Sie folgen diesem Anbieter nicht mehr.",
+    "Please log in to follow this vendor.": "Bitte melden Sie sich an, um diesem Anbieter zu folgen.",
+    "You cannot follow yourself.": "Sie können sich nicht selbst folgen.",
+    "Vendor not found.": "Anbieter nicht gefunden.",
+    "You can only follow vendors.": "Sie können nur Anbietern folgen.",
+    "Only customers can follow vendors.": "Nur Kunden können Anbietern folgen.",
+    "Failed to unfollow vendor.": "Fehler beim Entfolgen des Anbieters.",
+    "Failed to follow vendor.": "Fehler beim Folgen des Anbieters.",
+    "Success": "Erfolg",
+    "Warning": "Warnung"
   }

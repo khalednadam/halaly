@@ -118,7 +118,15 @@
                                 erContainer.html('<div class="alert alert-'+data.type+'">'+data.msg+'</div>');
                                 let redirectPath = "{{route('user.dashboard')}}";
                                 @if(!empty(request()->get('return')))
-                                    redirectPath = "{{url('/'.request()->get('return'))}}";
+                                    @php
+                                        $returnPath = request()->get('return');
+                                        $returnUrl = url('/' . $returnPath);
+                                        $followUserId = request()->get('follow_user_id');
+                                        if ($followUserId) {
+                                            $returnUrl .= '?follow_user_id=' . $followUserId;
+                                        }
+                                    @endphp
+                                    redirectPath = "{{ $returnUrl }}";
                                 @endif
                                     window.location = redirectPath;
                             }else{

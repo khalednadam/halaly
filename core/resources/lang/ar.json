@@ -1458,5 +1458,21 @@
     "All Vendors": "جميع البائعين",
     "Vendor Subcategory Report": "تقرير فئة البائع الفرعية",
     "Number of Listings": "عدد الإعلانات",
-    "View Listings": "عرض الإعلانات"
+    "View Listings": "عرض الإعلانات",
+    "Unfollow": "إلغاء المتابعة",
+    "Followed Vendors": "البائعون المتابعون",
+    "No Followed Vendors Yet": "لا يوجد بائعون متابعون بعد",
+    "Following since": "متابع منذ",
+    "reviews": "تقييمات",
+    "You are now following this vendor.": "أنت تتابع هذا البائع الآن.",
+    "You have unfollowed this vendor.": "لقد ألغيت متابعة هذا البائع.",
+    "Please log in to follow this vendor.": "يرجى تسجيل الدخول لمتابعة هذا البائع.",
+    "You cannot follow yourself.": "لا يمكنك متابعة نفسك.",
+    "Vendor not found.": "البائع غير موجود.",
+    "You can only follow vendors.": "يمكنك متابعة البائعين فقط.",
+    "Only customers can follow vendors.": "يمكن للعملاء فقط متابعة البائعين.",
+    "Failed to unfollow vendor.": "فشل إلغاء متابعة البائع.",
+    "Failed to follow vendor.": "فشل متابعة البائع.",
+    "Success": "نجاح",
+    "Warning": "تحذير"
 }

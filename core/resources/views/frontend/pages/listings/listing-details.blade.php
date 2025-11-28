@@ -362,8 +362,7 @@
                                     </div>
                                 @elseif(!auth()->check())
                                     <div class="follow-btn-wrapper mt-3">
-                                        <a href="javascript:void(0)" class="cmn-btn2 w-100" data-bs-toggle="modal"
-                                            data-bs-target="#loginModal">{{ __('Follow') }}</a>
+                                        <a href="{{ route('user.login', ['return' => 'listing/' . $listing->slug, 'follow_user_id' => $listing->user_id]) }}" class="cmn-btn2 w-100">{{ __('Follow') }}</a>
                                     </div>
                                 @endif
                             </div>
@@ -651,6 +650,55 @@
                         }
                     });
                 });
+
+                // Auto-follow after login
+                @if(auth()->check())
+                    (function() {
+                        const urlParams = new URLSearchParams(window.location.search);
+                        const followUserId = urlParams.get('follow_user_id');
+                        
+                        if (followUserId) {
+                            let followButton = $('.follow-user-btn[data-user-id="' + followUserId + '"]');
+                            
+                            if (followButton.length) {
+                                // Check if already following
+                                $.ajax({
+                                    url: "{{ route('user.check.follow.status') }}",
+                                    type: 'POST',
+                                    data: {
+                                        _token: '{{ csrf_token() }}',
+                                        user_id: followUserId
+                                    },
+                                    success: function(res) {
+                                        if (res.status === 'success' && !res.is_following) {
+                                            // Not following yet, trigger follow action
+                                            followButton.trigger('click');
+                                        }
+                                        
+                                        // Remove the parameter from URL without reload
+                                        urlParams.delete('follow_user_id');
+                                        const newSearch = urlParams.toString();
+                                        const newUrl = window.location.pathname + (newSearch ? '?' + newSearch : '');
+                                        window.history.replaceState({}, '', newUrl);
+                                    },
+                                    error: function() {
+                                        // On error, still remove the parameter
+                                        urlParams.delete('follow_user_id');
+                                        const newSearch = urlParams.toString();
+                                        const newUrl = window.location.pathname + (newSearch ? '?' + newSearch : '');
+                                        window.history.replaceState({}, '', newUrl);
+                                    }
+                                });
+                            } else {
+                                // Button not found, just remove the parameter
+                                urlParams.delete('follow_user_id');
+                                const newSearch = urlParams.toString();
+                                const newUrl = window.location.pathname + (newSearch ? '?' + newSearch : '');
+                                window.history.replaceState({}, '', newUrl);
+                            }
+                        }
+                    })();
+                @endif
 
             });
         })(jQuery);

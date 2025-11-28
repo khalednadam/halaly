@@ -133,5 +133,30 @@ class UserFollowController extends Controller
             'is_following' => $isFollowing
         ]);
     }
+
+    /**
+     * Show all vendors that the authenticated customer is following
+     * Only accessible by customers, and only shows their own followed vendors
+     */
+    public function followedVendors()
+    {
+        $currentUser = Auth::guard('web')->user();
+
+        // Ensure only customers can access this page
+        if (!$currentUser->isCustomer()) {
+            abort(403, __('Access denied. Only customers can view followed vendors.'));
+        }
+
+        // Get all vendors the current user is following
+        // Using with() to eager load relationships for better performance
+        $followedVendors = UserFollow::with(['following.user_country', 'following.user_state', 'following.user_city', 'following.reviews'])
+            ->where('follower_id', $currentUser->id)
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+
+        return view('frontend.user.followed-vendors.all-followed', [
+            'followedVendors' => $followedVendors
+        ]);
+    }
 }
 

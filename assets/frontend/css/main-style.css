@@ -7146,8 +7146,10 @@ object {
 }
 @media (max-width: 575px) {
   .userAccount-wrapper {
-    -webkit-transform: translateX(40%);
-    transform: translateX(40%);
+    right: auto;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
   }
 }
 .userAccount-wrapper .ac-title {
