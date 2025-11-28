@@ -4,7 +4,7 @@
             <div class="featureImg">
                 <x-listings.favorite-item-add-remove :favorite="$listing->id ?? 0" />
                 <a href="{{ route('frontend.listing.details', $listing->slug) }}" class="main-card-image">
-                    {!! render_image_markup_by_attachment_id($listing->image, '','','thumb'); !!}
+                    {!! render_image_markup_by_attachment_id($listing->image, '','','thumb') !!}
                 </a>
             </div>
             <div class="featurebody" style="height:100px">
