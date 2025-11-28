@@ -7120,7 +7120,7 @@ object {
 .userAccount-wrapper {
   position: absolute;
   top: 130%;
-  right: 0;
+  left: 0;
   background: #ffffff;
   z-index: 999;
   -webkit-box-shadow: 0 0 10px rgba(221, 221, 221, 0.2);
@@ -7146,10 +7146,11 @@ object {
 }
 @media (max-width: 575px) {
   .userAccount-wrapper {
-    right: auto;
-    left: 50%;
-    -webkit-transform: translateX(-50%);
-    transform: translateX(-50%);
+    right: 0;
+    left: auto;
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    max-width: calc(100vw - 20px);
   }
 }
 .userAccount-wrapper .ac-title {
