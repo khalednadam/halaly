@@ -48,8 +48,8 @@ Route::group(['prefix'=>'user','as'=>'user.'],function() {
             });
         });
 
-          // add listing - VENDOR ONLY
-          Route::middleware('checkUserRole:vendor')->controller(ListingController::class)->group(function () {
+          // add listing - VENDOR AND CUSTOMER
+          Route::middleware('checkUserRole:vendor,customer')->controller(ListingController::class)->group(function () {
               Route::group(['prefix'=>'listing'],function(){
                   Route::get('all','allListing')->name('all.listing');
                   Route::match(['get','post'],'/add','addListing')->name('add.listing');

@@ -176,7 +176,6 @@
     </li>
 @endif
     @if(Auth::check())
-        @isVendor
         <li class="single">
             <div class="btn-wrapper">
                 <a href="{{ route('user.add.listing') }}"  class="cmn-btn1 popup-modal">
@@ -184,7 +183,6 @@
                 </a>
             </div>
         </li>
-        @endisVendor
     @else
         <li class="single">
             <div class="btn-wrapper">

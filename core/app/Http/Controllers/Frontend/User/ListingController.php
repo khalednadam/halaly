@@ -129,6 +129,21 @@ class ListingController extends Controller
             ]);
 
             $user = User::where('id', Auth::guard('web')->user()->id)->first();
+
+            // Restrict customers to only 'halaly-souq' category
+            if ($user->isCustomer()) {
+                $halalyCategory = Category::where('slug', 'halaly-souq')->first();
+
+                if (!$halalyCategory) {
+                    toastr_error(__('halaly-souq category not found. Please contact administrator.'));
+                    return redirect()->back()->withInput();
+                }
+
+                if ($request->category_id != $halalyCategory->id) {
+                    toastr_error(__('As a customer, you can only add listings under halaly-souq category.'));
+                    return redirect()->back()->withInput();
+                }
+            }
             $listing=Listing::all();
             $present=false;
             foreach($listing as $list)
@@ -285,7 +300,16 @@ class ListingController extends Controller
             }
         }
 
-        $categories = Category::where('status', 1)->get();
+        // Filter categories for customers - only show 'halaly-souq'
+        $user = Auth::guard('web')->user();
+        $halalyCategory = null;
+        if ($user->isCustomer()) {
+            $halalyCategory = Category::where('slug', 'halaly-souq')->where('status', 1)->first();
+            $categories = $halalyCategory ? collect([$halalyCategory]) : collect([]);
+        } else {
+            $categories = Category::where('status', 1)->get();
+        }
+
         $sub_categories = SubCategory::where('status', 1);
         $all_countries = Country::all_countries();
         $all_states = State::all_states();
@@ -318,6 +342,7 @@ class ListingController extends Controller
             'user',
             'brands',
             'categories',
+            'halalyCategory',
             'sub_categories',
             'all_countries',
             'all_states',
@@ -352,13 +377,28 @@ class ListingController extends Controller
 
             // country, state, city
             $user = User::where('id', Auth::guard('web')->user()->id)->first();
+
+            // Restrict customers to only 'halaly-souq' category
+            if ($user->isCustomer()) {
+                $halalyCategory = Category::where('slug', 'halaly-souq')->first();
+
+                if (!$halalyCategory) {
+                    toastr_error(__('halaly-souq category not found. Please contact administrator.'));
+                    return redirect()->back()->withInput();
+                }
+
+                if ($request->category_id != $halalyCategory->id) {
+                    toastr_error(__('As a customer, you can only add listings under halaly-souq category.'));
+                    return redirect()->back()->withInput();
+                }
+            }
             $listing=Listing::whereNot("id",$id)->get();
             $present=false;
             foreach($listing as $list)
             {
                 if($request->slug == $list->slug)
                 {
-                    
+
                     $present=true;
                     break;
                 }
@@ -444,7 +484,7 @@ class ListingController extends Controller
             {
                 $listing->metaData()->create($Metas);
             }
-           
+
             // Retrieve the last inserted ID
             $last_listing_id = $listing->id;
 
@@ -476,7 +516,17 @@ class ListingController extends Controller
 
 
         $listing = Listing::findOrFail($id);
-        $categories = Category::where('status', 1)->get();
+
+        // Filter categories for customers - only show 'halaly-souq'
+        $user = Auth::guard('web')->user();
+        $halalyCategory = null;
+        if ($user->isCustomer()) {
+            $halalyCategory = Category::where('slug', 'halaly-souq')->where('status', 1)->first();
+            $categories = $halalyCategory ? collect([$halalyCategory]) : collect([]);
+        } else {
+            $categories = Category::where('status', 1)->get();
+        }
+
         $sub_categories = SubCategory::where('status', 1)->get();
         $child_categories = ChildCategory::where('status', 1)->get();
         $all_countries = Country::all_countries();
@@ -511,12 +561,14 @@ class ListingController extends Controller
             'listing',
             'brands',
             'categories',
+            'halalyCategory',
             'sub_categories',
             'child_categories',
             'all_countries',
             'all_states',
             'all_cities',
-            'tags'
+            'tags',
+            'user'
         ));
     }
 

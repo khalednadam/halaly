@@ -198,12 +198,15 @@
                                                         <div class="col-sm-4">
                                                             <div class="item-catagory-wraper">
                                                                 <label for="item-catagory">{{ __('Item Category') }} <span class="text-danger">*</span> </label>
-                                                                <select name="category_id" id="category" class="select-itms select2_activation">
+                                                                <select name="category_id" id="category" class="select-itms select2_activation" @if($user->isCustomer() && $halalyCategory) disabled @endif>
                                                                     <option value="">{{__('Select Category')}}</option>
                                                                     @foreach($categories as $cat)
-                                                                        <option value="{{$cat->id}}" @if($cat->id == $listing->category_id) selected @endif>{{ $cat->name }}</option>
+                                                                        <option value="{{$cat->id}}" @if($cat->id == $listing->category_id || ($user->isCustomer() && $halalyCategory && $cat->id == $halalyCategory->id)) selected @endif>{{ $cat->name }}</option>
                                                                     @endforeach
                                                                 </select>
+                                                                @if($user->isCustomer() && $halalyCategory)
+                                                                    <input type="hidden" name="category_id" value="{{ $halalyCategory->id }}">
+                                                                @endif
                                                             </div>
                                                         </div>
                                                         <div class="col-sm-4">
