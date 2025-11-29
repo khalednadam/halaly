@@ -91,6 +91,7 @@
                                                     <div class="publish-btn">
                                                       <x-status.frontend-listing-published-change :title="__('Change Status')" :url="route('user.listing.published.status', $listing->id)" :published="$listing->is_published"/>
                                                     </div>
+                                                @endisVendor
                                                 <div class="setting-btn-wraper">
                                                     <a href="javascript:void(0)" class="setting-btn">
                                                         <i class="fa-solid fa-ellipsis-vertical"></i>
@@ -107,7 +108,6 @@
                                                         <x-popup.frontend-listing-delete-popup :url="route('user.delete.listing',$listing->id)"/>
                                                     </div>
                                                 </div>
-                                                @endisVendor
                                             </div>
                                         </div>
                                        <div class="devider"></div>
