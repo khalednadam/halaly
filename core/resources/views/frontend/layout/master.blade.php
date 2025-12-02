@@ -1,4 +1,5 @@
 @include('frontend.layout.partials.header')
+@include('frontend.layout.partials.news-bar')
 @include('frontend.layout.partials.navbar')
 @if (!empty($page_post) && $page_post->breadcrumb_status == 'on')
     <div class="@if(Request::is('about') || Request::is('listings')) container-1920 plr1 @else container-1440 @endif">

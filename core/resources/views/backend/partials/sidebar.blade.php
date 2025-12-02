@@ -346,7 +346,7 @@
                     @endcanany
 
                  @canany(['reading-settings', 'site-identity-settings', 'basic-settings', 'seo-settings', 'scripts-settings', 'custom-css-settings',
-                          'custom-js-settings', 'sitemap-settings', 'gdpr-settings', 'license-setting', 'software-update-setting', 'cache-settings', 'database-upgrade-setting'
+                          'custom-js-settings', 'sitemap-settings', 'gdpr-settings', 'license-setting', 'software-update-setting', 'cache-settings', 'database-upgrade-setting', 'news-bar-settings'
                           ])
                 <li class="dashboard__bottom__list__item has-children @if(request()->is('admin/general-settings/*')) active open @endif">
                     <a href="javascript:void(0)"><i class="las la-cog"></i>
@@ -416,6 +416,11 @@
                       @can('database-upgrade-settings')
                         <li class="dashboard__bottom__list__item @if(request()->is('admin/general-settings/database-upgrade')) selected @endif">
                             <a href="{{ route('admin.general.database.upgrade') }}">{{ __('Database Upgrade') }}</a>
+                        </li>
+                     @endcan
+                     @can('news-bar-settings')
+                        <li class="dashboard__bottom__list__item @if(request()->is('admin/general-settings/news-bar-settings')) selected @endif">
+                            <a href="{{ route('admin.general.news.bar.settings') }}">{{ __('News Bar Settings') }}</a>
                         </li>
                      @endcan
                     </ul>

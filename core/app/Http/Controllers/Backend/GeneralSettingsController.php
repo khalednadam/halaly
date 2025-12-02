@@ -586,5 +586,44 @@ class GeneralSettingsController extends Controller
         return back()->with(FlashMsg::item_new('Database Upgraded Successfully'));
     }
 
+    public function newsBarSettings()
+    {
+        // Only show Arabic and English languages
+        $all_languages = Language::whereIn('slug', ['ar', 'en'])->get();
+        return view('backend.general-settings.news-bar')->with(['all_languages' => $all_languages]);
+    }
+
+    public function updateNewsBarSettings(Request $request)
+    {
+        $this->validate($request, [
+            'news_bar_status' => 'nullable|string',
+            'news_bar_bg_color' => 'nullable|string',
+            'news_bar_text_color' => 'nullable|string',
+        ]);
+
+        // Only update Arabic and English languages
+        $all_languages = Language::whereIn('slug', ['ar', 'en'])->get();
+        
+        foreach ($all_languages as $lang) {
+            $field_name = 'news_bar_text_' . $lang->slug;
+            if ($request->has($field_name)) {
+                update_static_option($field_name, $request->$field_name);
+            }
+        }
+
+        $fields = [
+            'news_bar_status',
+            'news_bar_bg_color',
+            'news_bar_text_color',
+        ];
+
+        foreach ($fields as $field) {
+            if ($request->has($field)) {
+                update_static_option($field, $request->$field);
+            }
+        }
+
+        return redirect()->back()->with(FlashMsg::settings_update());
+    }
 
 }

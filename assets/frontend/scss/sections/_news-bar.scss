@@ -1,0 +1,98 @@
+// News Bar Styles - Continuous Marquee with Sticky Top
+.news-bar-container {
+    width: 100%;
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.news-bar-marquee {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    white-space: nowrap;
+}
+
+.news-bar-content {
+    display: inline-flex;
+    white-space: nowrap;
+    animation: marquee-scroll 30s linear infinite;
+    will-change: transform;
+    width: fit-content;
+}
+
+.news-bar-item {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.5;
+    padding: 0 50px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.news-separator {
+    display: inline-block;
+    padding: 0 15px;
+    opacity: 0.6;
+    font-weight: normal;
+}
+
+// Continuous marquee scrolling animation - seamless loop
+@keyframes marquee-scroll {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+// Pause animation on hover
+.news-bar-container:hover .news-bar-content {
+    animation-play-state: paused;
+}
+
+// RTL support
+[dir="rtl"] .news-bar-content {
+    animation: marquee-scroll-rtl 30s linear infinite;
+}
+
+@keyframes marquee-scroll-rtl {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(50%);
+    }
+}
+
+// Mobile responsive
+@media (max-width: 768px) {
+    .news-bar-container {
+        padding: 10px 0;
+    }
+    
+    .news-bar-item {
+        font-size: 12px;
+        padding: 0 30px;
+    }
+    
+    .news-separator {
+        padding: 0 10px;
+    }
+    
+    .news-bar-content {
+        animation-duration: 25s; // Faster on mobile
+    }
+    
+    [dir="rtl"] .news-bar-content {
+        animation-duration: 25s;
+    }
+}
+

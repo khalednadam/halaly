@@ -696,6 +696,7 @@ class RolePermissionDatabaseSeeder extends Seeder
             'license-key-generate',
             'update-version-check',
             'software-update-settings',
+            'news-bar-settings',
           ];
 
         foreach ($general_settings_permissions as $permission) {
