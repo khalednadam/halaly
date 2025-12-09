@@ -424,7 +424,7 @@ Route::middleware(['setlang'])->group(function () {
             Route::post('/database-upgrade', [GeneralSettingsController::class, 'databaseUpgradePost']);
 
             //news bar settings
-            Route::get('/news-bar-settings', [GeneralSettingsController::class, 'newsBarSettings'])->name('admin.general.news.bar.settings')->permission('news-bar-settings');
+            Route::get('/news-bar-settings', [GeneralSettingsController::class, 'newsBarSettings'])->name('admin.general.news.bar.settings');
             Route::post('/news-bar-settings', [GeneralSettingsController::class, 'updateNewsBarSettings']);
 
             Route::post('/license-setting-verify', [GeneralSettingsController::class, 'licenseKeyGenerate'])->name('admin.general.license.key.generate')->permission('license-key-generate');
