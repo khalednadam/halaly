@@ -370,8 +370,8 @@
                         <!--user info -->
                         <div class="d-none d-md-block">
                             <x-listings.user-listing-phone :listing="$listing" />
-                            <x-listings.listing-details-page-user-info :listing="$listing"
-                                :userTotalListings="$user_total_listings" />
+                            {{-- <x-listings.listing-details-page-user-info :listing="$listing"
+                                :userTotalListings="$user_total_listings" /> --}}
                         </div>
 
                         <!--Adds left-->
@@ -656,10 +656,10 @@
                     (function() {
                         const urlParams = new URLSearchParams(window.location.search);
                         const followUserId = urlParams.get('follow_user_id');
-                        
+
                         if (followUserId) {
                             let followButton = $('.follow-user-btn[data-user-id="' + followUserId + '"]');
-                            
+
                             if (followButton.length) {
                                 // Check if already following
                                 $.ajax({
@@ -674,7 +674,7 @@
                                             // Not following yet, trigger follow action
                                             followButton.trigger('click');
                                         }
-                                        
+
                                         // Remove the parameter from URL without reload
                                         urlParams.delete('follow_user_id');
                                         const newSearch = urlParams.toString();
